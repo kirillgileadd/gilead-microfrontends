@@ -1,5 +1,5 @@
 {
-  "name": "single-spa-root-microfrontend",
+  "name": "gilead-microfrontends-root",
   "version": "0.0.0",
   "private": true,
   "type": "module",

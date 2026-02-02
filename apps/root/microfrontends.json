@@ -12,6 +12,13 @@
           "paths": ["/_content/:path*"]
         }
       ]
+    },
+    "gilead-microfrontends-navigation": {
+      "routing": [
+        {
+          "paths": ["/_navigation/:path*"]
+        }
+      ]
     }
   }
 }
