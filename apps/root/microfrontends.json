@@ -1,22 +1,15 @@
 {
   "$schema": "https://openapi.vercel.sh/microfrontends.json",
   "applications": {
-    "single-spa-root-microfrontend": {
+    "gilead-microfrontends-root": {
       "development": {
-        "fallback": "single-spa-root-microfrontend.labs.vercel.dev"
+        "fallback": "gilead-microfrontends-root.vercel.app"
       }
     },
-    "single-spa-content-microfrontend": {
+    "gilead-microfrontends-content": {
       "routing": [
         {
           "paths": ["/_content/:path*"]
-        }
-      ]
-    },
-    "single-spa-navigation-microfrontend": {
-      "routing": [
-        {
-          "paths": ["/_navigation/:path*"]
         }
       ]
     }
