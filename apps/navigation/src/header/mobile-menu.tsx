@@ -1,3 +1,11 @@
+import { ROUTE_PATHS } from 'contracts';
+
+function navTo(path: string): void {
+  if (window.__ROUTER__) {
+    window.__ROUTER__.navigate(path);
+  }
+}
+
 export function MobileMenu({
   open,
   onClose,
@@ -14,8 +22,12 @@ export function MobileMenu({
         <div className="remote:flex remote:items-center remote:justify-between">
           <a
             className="remote:flex remote:items-center remote:gap-2"
-            href="/"
-            onClick={onClose}
+            href={ROUTE_PATHS.HOME}
+            onClick={(e) => {
+              e.preventDefault();
+              navTo(ROUTE_PATHS.HOME);
+              onClose();
+            }}
           >
             <img
               alt="Logo"
@@ -53,31 +65,25 @@ export function MobileMenu({
         <nav className="remote:mt-6 remote:flex remote:flex-col remote:gap-4">
           <a
             className="remote:text-base remote:font-medium remote:hover:text-primary"
-            href="#features"
-            onClick={onClose}
+            href={ROUTE_PATHS.HOME}
+            onClick={(e) => {
+              e.preventDefault();
+              navTo(ROUTE_PATHS.HOME);
+              onClose();
+            }}
           >
-            Features
+            Главная
           </a>
           <a
             className="remote:text-base remote:font-medium remote:hover:text-primary"
-            href="#testimonials"
-            onClick={onClose}
+            href={ROUTE_PATHS.ABOUT}
+            onClick={(e) => {
+              e.preventDefault();
+              navTo(ROUTE_PATHS.ABOUT);
+              onClose();
+            }}
           >
-            Testimonials
-          </a>
-          <a
-            className="remote:text-base remote:font-medium remote:hover:text-primary"
-            href="#pricing"
-            onClick={onClose}
-          >
-            Pricing
-          </a>
-          <a
-            className="remote:text-base remote:font-medium remote:hover:text-primary"
-            href="#about"
-            onClick={onClose}
-          >
-            About
+            О шаблоне
           </a>
           <div className="remote:mt-4 remote:flex remote:flex-col remote:gap-2">
             <button

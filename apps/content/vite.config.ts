@@ -12,6 +12,7 @@ export default defineConfig({
       name: 'content',
       manifest: true,
       filename: 'remoteEntry.js',
+      library: { type: 'module' },
       exposes: {
         './landing': './src/landing.tsx',
       },

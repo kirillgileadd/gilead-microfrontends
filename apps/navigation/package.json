@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@vercel/microfrontends": "1.2.4",
+    "contracts": "workspace:*",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "single-spa-react": "^6.0.2"

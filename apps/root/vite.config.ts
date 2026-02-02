@@ -7,7 +7,6 @@ import react from '@vitejs/plugin-react';
 
 // eslint-disable-next-line import/no-default-export
 export default defineConfig(() => {
-  
   return {
     plugins: [
       tailwindcss(),
@@ -38,6 +37,12 @@ export default defineConfig(() => {
             singleton: true,
           },
           'react-dom/': {
+            singleton: true,
+          },
+          'react-router-dom': {
+            singleton: true,
+          },
+          'react-router-dom/': {
             singleton: true,
           },
         },

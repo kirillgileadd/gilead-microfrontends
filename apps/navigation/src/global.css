@@ -10,6 +10,13 @@
   --border: hsl(262 47% 18%);
 }
 
+@layer base {
+  html, body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+}
+
 @utility container {
   margin-left: auto;
   margin-right: auto;
