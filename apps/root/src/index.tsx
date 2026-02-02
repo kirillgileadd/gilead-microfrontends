@@ -1,10 +1,19 @@
 import React from 'react';
 import ReactDOMClient from 'react-dom/client';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { registerApplication, start } from 'single-spa';
 import { mountVercelToolbar } from '@vercel/toolbar/vite';
-import { ROUTES } from 'contracts';
+import { ROUTES, getEventBus } from 'contracts';
+import { useAuthStore } from './stores/authStore';
 import './globals.css';
+
+const queryClient = new QueryClient();
+
+getEventBus();
+window.__EVENT_BUS__?.emit('auth:change', {
+  isAuth: useAuthStore.getState().isAuth,
+});
 
 function Layout(): React.JSX.Element {
   return (
@@ -33,17 +42,24 @@ router.subscribe(() => {
       detail: { pathname, search, hash },
     }),
   );
+  window.__EVENT_BUS__?.emit('route:change', { pathname, search, hash });
 });
 
+const initialLocation = router.state.location;
 window.dispatchEvent(
   new CustomEvent('host-location-change', {
     detail: {
-      pathname: router.state.location.pathname,
-      search: router.state.location.search,
-      hash: router.state.location.hash,
+      pathname: initialLocation.pathname,
+      search: initialLocation.search,
+      hash: initialLocation.hash,
     },
   }),
 );
+window.__EVENT_BUS__?.emit('route:change', {
+  pathname: initialLocation.pathname,
+  search: initialLocation.search,
+  hash: initialLocation.hash,
+});
 
 window.__ROUTER__ = {
   navigate: (to: string) => {
@@ -51,11 +67,19 @@ window.__ROUTER__ = {
   },
 };
 
+window.__AUTH__ = {
+  login: () => useAuthStore.getState().setAuth(true),
+  logout: () => useAuthStore.getState().setAuth(false),
+  getIsAuth: () => useAuthStore.getState().isAuth,
+};
+
 const rootEl = document.getElementById('root');
 if (rootEl) {
   ReactDOMClient.createRoot(rootEl).render(
     <React.StrictMode>
-      <RouterProvider router={router} />
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+      </QueryClientProvider>
     </React.StrictMode>,
   );
 }

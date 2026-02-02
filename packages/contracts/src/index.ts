@@ -14,3 +14,9 @@ export {
   setHostLocation,
   type HostLocation,
 } from './location-sync';
+
+export {
+  getEventBus,
+  type EventBus,
+  type EventPayloadMap,
+} from './event-bus';

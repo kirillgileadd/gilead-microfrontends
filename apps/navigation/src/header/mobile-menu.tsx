@@ -1,4 +1,6 @@
+import React from 'react';
 import { ROUTE_PATHS } from 'contracts';
+import { useAuthFromHostStore } from '../stores/authFromHostStore';
 
 function navTo(path: string): void {
   if (window.__ROUTER__) {
@@ -13,6 +15,8 @@ export function MobileMenu({
   open: boolean;
   onClose: () => void;
 }): React.JSX.Element {
+  const isAuth = useAuthFromHostStore((s) => s.isAuth);
+
   return (
     <div
       className={`remote:fixed remote:top-0 remote:inset-0 remote:z-50 remote:bg-background/80 remote:backdrop-blur-sm remote:md:hidden${open ? '' : ' remote:hidden'}`}
@@ -86,20 +90,29 @@ export function MobileMenu({
             О шаблоне
           </a>
           <div className="remote:mt-4 remote:flex remote:flex-col remote:gap-2">
-            <button
-              className="remote:inline-flex remote:h-10 remote:w-full remote:items-center remote:justify-center remote:rounded-md remote:border remote:border-input remote:bg-background remote:px-4 remote:py-2 remote:text-sm remote:font-medium remote:shadow-sm remote:transition-colors remote:hover:bg-muted"
-              onClick={onClose}
-              type="button"
-            >
-              Log in
-            </button>
-            <button
-              className="remote:inline-flex remote:h-10 remote:w-full remote:items-center remote:justify-center remote:rounded-md remote:bg-primary remote:px-4 remote:py-2 remote:text-sm remote:font-medium remote:text-primary-foreground remote:shadow remote:transition-colors remote:hover:bg-primary/90"
-              onClick={onClose}
-              type="button"
-            >
-              Sign up
-            </button>
+            {isAuth ? (
+              <button
+                className="remote:inline-flex remote:h-10 remote:w-full remote:items-center remote:justify-center remote:rounded-md remote:border remote:border-input remote:bg-background remote:px-4 remote:py-2 remote:text-sm remote:font-medium remote:shadow-sm remote:transition-colors remote:hover:bg-muted"
+                onClick={() => {
+                  window.__AUTH__?.logout();
+                  onClose();
+                }}
+                type="button"
+              >
+                Logout
+              </button>
+            ) : (
+              <button
+                className="remote:inline-flex remote:h-10 remote:w-full remote:items-center remote:justify-center remote:rounded-md remote:bg-primary remote:px-4 remote:py-2 remote:text-sm remote:font-medium remote:text-primary-foreground remote:shadow remote:transition-colors remote:hover:bg-primary/90"
+                onClick={() => {
+                  window.__AUTH__?.login();
+                  onClose();
+                }}
+                type="button"
+              >
+                Login
+              </button>
+            )}
           </div>
         </nav>
       </div>

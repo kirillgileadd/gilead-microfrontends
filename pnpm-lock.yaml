@@ -20,6 +20,9 @@ importers:
 
   apps/content:
     dependencies:
+      '@tanstack/react-query':
+        specifier: ^5.62.0
+        version: 5.90.20(react@19.2.4)
       '@vercel/microfrontends':
         specifier: 1.2.4
         version: 1.2.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vite@6.4.1(@types/node@20.19.30)(jiti@2.6.1)(lightningcss@1.30.2))
@@ -35,6 +38,9 @@ importers:
       single-spa-react:
         specifier: ^6.0.2
         version: 6.0.2(@types/react-dom@19.2.3(@types/react@19.2.10))(@types/react@19.2.10)(react@19.2.4)
+      zustand:
+        specifier: ^5.0.2
+        version: 5.0.11(@types/react@19.2.10)(react@19.2.4)
     devDependencies:
       '@module-federation/vite':
         specifier: 1.4.0
@@ -75,6 +81,9 @@ importers:
 
   apps/navigation:
     dependencies:
+      '@tanstack/react-query':
+        specifier: ^5.62.0
+        version: 5.90.20(react@19.2.4)
       '@vercel/microfrontends':
         specifier: 1.2.4
         version: 1.2.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vite@6.4.1(@types/node@20.19.30)(jiti@2.6.1)(lightningcss@1.30.2))
@@ -90,6 +99,9 @@ importers:
       single-spa-react:
         specifier: ^6.0.2
         version: 6.0.2(@types/react-dom@19.2.3(@types/react@19.2.10))(@types/react@19.2.10)(react@19.2.4)
+      zustand:
+        specifier: ^5.0.2
+        version: 5.0.11(@types/react@19.2.10)(react@19.2.4)
     devDependencies:
       '@module-federation/vite':
         specifier: 1.4.0
@@ -130,6 +142,9 @@ importers:
 
   apps/root:
     dependencies:
+      '@tanstack/react-query':
+        specifier: ^5.62.0
+        version: 5.90.20(react@19.2.4)
       '@vercel/microfrontends':
         specifier: 1.2.4
         version: 1.2.4(react-dom@19.2.4(react@19.2.4))(react@19.2.4)(vite@6.4.1(@types/node@20.19.30)(jiti@2.6.1)(lightningcss@1.30.2))
@@ -151,6 +166,9 @@ importers:
       single-spa:
         specifier: ^6.0.3
         version: 6.0.3
+      zustand:
+        specifier: ^5.0.2
+        version: 5.0.11(@types/react@19.2.10)(react@19.2.4)
     devDependencies:
       '@module-federation/vite':
         specifier: 1.4.0
@@ -799,6 +817,14 @@ packages:
     resolution: {integrity: sha512-jVA+/UpKL1vRLg6Hkao5jldawNmRo7mQYrZtNHMIVpLfLhDml5nMRUo/8MwoX2vNXvnaXNNMedrMfMugAVX1nA==}
     peerDependencies:
       vite: ^5.2.0 || ^6 || ^7
+
+  '@tanstack/query-core@5.90.20':
+    resolution: {integrity: sha512-OMD2HLpNouXEfZJWcKeVKUgQ5n+n3A2JFmBaScpNDUqSrQSjiveC7dKMe53uJUg1nDG16ttFPz2xfilz6i2uVg==}
+
+  '@tanstack/react-query@5.90.20':
+    resolution: {integrity: sha512-vXBxa+qeyveVO7OA0jX1z+DeyCA4JKnThKv411jd5SORpBKgkcVnYKCiBgECvADvniBX7tobwBmg01qq9JmMJw==}
+    peerDependencies:
+      react: ^18 || ^19
 
   '@tinyhttp/accepts@1.3.0':
     resolution: {integrity: sha512-YaJ4EMgVUI6JHzWO14lr6vn/BLJEoFN4Sqd20l0/oBcLLENkP8gnPtX1jB7OhIu0AE40VCweAqvSP+0/pgzB1g==}
@@ -1930,6 +1956,24 @@ packages:
   zod@4.3.6:
     resolution: {integrity: sha512-rftlrkhHZOcjDwkGlnUtZZkvaPHCsDATp4pGpuOOMDaTdDDXF91wuVDJoWoPsKX/3YPQ5fHuF3STjcYyKr+Qhg==}
 
+  zustand@5.0.11:
+    resolution: {integrity: sha512-fdZY+dk7zn/vbWNCYmzZULHRrss0jx5pPFiOuMZ/5HJN6Yv3u+1Wswy/4MpZEkEGhtNH+pwxZB8OKgUBPzYAGg==}
+    engines: {node: '>=12.20.0'}
+    peerDependencies:
+      '@types/react': '>=18.0.0'
+      immer: '>=9.0.6'
+      react: '>=18.0.0'
+      use-sync-external-store: '>=1.2.0'
+    peerDependenciesMeta:
+      '@types/react':
+        optional: true
+      immer:
+        optional: true
+      react:
+        optional: true
+      use-sync-external-store:
+        optional: true
+
 snapshots:
 
   '@alloc/quick-lru@5.2.0': {}
@@ -2402,6 +2446,13 @@ snapshots:
       '@tailwindcss/oxide': 4.1.18
       tailwindcss: 4.1.18
       vite: 6.4.1(@types/node@20.19.30)(jiti@2.6.1)(lightningcss@1.30.2)
+
+  '@tanstack/query-core@5.90.20': {}
+
+  '@tanstack/react-query@5.90.20(react@19.2.4)':
+    dependencies:
+      '@tanstack/query-core': 5.90.20
+      react: 19.2.4
 
   '@tinyhttp/accepts@1.3.0':
     dependencies:
@@ -3455,3 +3506,8 @@ snapshots:
       zod: 4.3.6
 
   zod@4.3.6: {}
+
+  zustand@5.0.11(@types/react@19.2.10)(react@19.2.4):
+    optionalDependencies:
+      '@types/react': 19.2.10
+      react: 19.2.4

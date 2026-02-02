@@ -9,13 +9,15 @@
     "start": "vite preview --port $(microfrontends port)"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.62.0",
     "@vercel/microfrontends": "1.2.4",
     "@vercel/toolbar": "0.1.36",
     "contracts": "workspace:*",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-router-dom": "^7.1.0",
-    "single-spa": "^6.0.3"
+    "single-spa": "^6.0.3",
+    "zustand": "^5.0.2"
   },
   "devDependencies": {
     "@module-federation/vite": "1.4.0",
